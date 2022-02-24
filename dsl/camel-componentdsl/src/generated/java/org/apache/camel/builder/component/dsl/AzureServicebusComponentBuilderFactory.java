@@ -86,6 +86,22 @@ public interface AzureServicebusComponentBuilderFactory {
             return this;
         }
         /**
+         * Set the ServiceBusClientBuilder for the configuration.
+         * 
+         * The option is a:
+         * &lt;code&gt;com.azure.messaging.servicebus.ServiceBusClientBuilder&lt;/code&gt; type.
+         * 
+         * Group: common
+         * 
+         * @param clientBuilder the value to set
+         * @return the dsl builder
+         */
+        default AzureServicebusComponentBuilder clientBuilder(
+                com.azure.messaging.servicebus.ServiceBusClientBuilder clientBuilder) {
+            doSetProperty("clientBuilder", clientBuilder);
+            return this;
+        }
+        /**
          * Sets the ClientOptions to be sent from the client built from this
          * builder, enabling customization of certain properties, as well as
          * support the addition of custom header information. Refer to the
@@ -495,6 +511,7 @@ public interface AzureServicebusComponentBuilderFactory {
             switch (name) {
             case "amqpRetryOptions": getOrCreateConfiguration((ServiceBusComponent) component).setAmqpRetryOptions((com.azure.core.amqp.AmqpRetryOptions) value); return true;
             case "amqpTransportType": getOrCreateConfiguration((ServiceBusComponent) component).setAmqpTransportType((com.azure.core.amqp.AmqpTransportType) value); return true;
+            case "clientBuilder": getOrCreateConfiguration((ServiceBusComponent) component).setClientBuilder((com.azure.messaging.servicebus.ServiceBusClientBuilder) value); return true;
             case "clientOptions": getOrCreateConfiguration((ServiceBusComponent) component).setClientOptions((com.azure.core.util.ClientOptions) value); return true;
             case "configuration": ((ServiceBusComponent) component).setConfiguration((org.apache.camel.component.azure.servicebus.ServiceBusConfiguration) value); return true;
             case "proxyOptions": getOrCreateConfiguration((ServiceBusComponent) component).setProxyOptions((com.azure.core.amqp.ProxyOptions) value); return true;

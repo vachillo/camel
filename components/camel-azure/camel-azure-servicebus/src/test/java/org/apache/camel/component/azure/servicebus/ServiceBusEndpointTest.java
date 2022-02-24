@@ -19,6 +19,7 @@ package org.apache.camel.component.azure.servicebus;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.azure.messaging.servicebus.ServiceBusClientBuilder;
 import org.apache.camel.ResolveEndpointFailedException;
 import org.apache.camel.test.junit5.CamelTestSupport;
 import org.junit.jupiter.api.Test;
@@ -54,6 +55,26 @@ class ServiceBusEndpointTest extends CamelTestSupport {
         assertEquals("testTopicOrQueue", endpoint.getConfiguration().getTopicOrQueueName());
         assertEquals(10, endpoint.getConfiguration().getPrefetchCount());
         assertEquals("testString", endpoint.getConfiguration().getConnectionString());
+    }
+
+    @Test
+    void testCreateEndpointWithClientBuilder() throws Exception {
+        final String uri = "azure-servicebus://testTopicOrQueue";
+        final String remaining = "testTopicOrQueue";
+        final ServiceBusClientBuilder clientBuilder = new ServiceBusClientBuilder();
+        final Map<String, Object> params = new HashMap<>();
+        params.put("serviceBusType", ServiceBusType.topic);
+        params.put("prefetchCount", 10);
+        params.put("clientBuilder", clientBuilder);
+
+        final ServiceBusEndpoint endpoint
+                = (ServiceBusEndpoint) context.getComponent("azure-servicebus", ServiceBusComponent.class)
+                .createEndpoint(uri, remaining, params);
+
+        assertEquals(ServiceBusType.topic, endpoint.getConfiguration().getServiceBusType());
+        assertEquals("testTopicOrQueue", endpoint.getConfiguration().getTopicOrQueueName());
+        assertEquals(10, endpoint.getConfiguration().getPrefetchCount());
+        assertEquals(clientBuilder, endpoint.getConfiguration().getClientBuilder());
     }
 
 }

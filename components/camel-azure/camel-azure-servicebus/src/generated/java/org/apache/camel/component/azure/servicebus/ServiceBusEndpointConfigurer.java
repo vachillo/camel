@@ -27,6 +27,8 @@ public class ServiceBusEndpointConfigurer extends PropertyConfigurerSupport impl
         case "amqpTransportType": target.getConfiguration().setAmqpTransportType(property(camelContext, com.azure.core.amqp.AmqpTransportType.class, value)); return true;
         case "bridgeerrorhandler":
         case "bridgeErrorHandler": target.setBridgeErrorHandler(property(camelContext, boolean.class, value)); return true;
+        case "clientbuilder":
+        case "clientBuilder": target.getConfiguration().setClientBuilder(property(camelContext, com.azure.messaging.servicebus.ServiceBusClientBuilder.class, value)); return true;
         case "clientoptions":
         case "clientOptions": target.getConfiguration().setClientOptions(property(camelContext, com.azure.core.util.ClientOptions.class, value)); return true;
         case "connectionstring":
@@ -85,6 +87,8 @@ public class ServiceBusEndpointConfigurer extends PropertyConfigurerSupport impl
         case "amqpTransportType": return com.azure.core.amqp.AmqpTransportType.class;
         case "bridgeerrorhandler":
         case "bridgeErrorHandler": return boolean.class;
+        case "clientbuilder":
+        case "clientBuilder": return com.azure.messaging.servicebus.ServiceBusClientBuilder.class;
         case "clientoptions":
         case "clientOptions": return com.azure.core.util.ClientOptions.class;
         case "connectionstring":
@@ -139,6 +143,8 @@ public class ServiceBusEndpointConfigurer extends PropertyConfigurerSupport impl
         case "amqpTransportType": return target.getConfiguration().getAmqpTransportType();
         case "bridgeerrorhandler":
         case "bridgeErrorHandler": return target.isBridgeErrorHandler();
+        case "clientbuilder":
+        case "clientBuilder": return target.getConfiguration().getClientBuilder();
         case "clientoptions":
         case "clientOptions": return target.getConfiguration().getClientOptions();
         case "connectionstring":

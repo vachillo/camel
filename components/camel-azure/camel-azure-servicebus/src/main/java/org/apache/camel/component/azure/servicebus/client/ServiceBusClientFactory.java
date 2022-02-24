@@ -44,12 +44,13 @@ public final class ServiceBusClientFactory {
     }
 
     private static ServiceBusClientBuilder createBaseServiceBusClient(final ServiceBusConfiguration configuration) {
-        return new ServiceBusClientBuilder()
-                .transportType(configuration.getAmqpTransportType())
-                .clientOptions(configuration.getClientOptions())
-                .retryOptions(configuration.getAmqpRetryOptions())
-                .proxyOptions(configuration.getProxyOptions())
-                .connectionString(configuration.getConnectionString());
+        return configuration.getClientBuilder() != null
+                ? configuration.getClientBuilder() : new ServiceBusClientBuilder()
+                        .transportType(configuration.getAmqpTransportType())
+                        .clientOptions(configuration.getClientOptions())
+                        .retryOptions(configuration.getAmqpRetryOptions())
+                        .proxyOptions(configuration.getProxyOptions())
+                        .connectionString(configuration.getConnectionString());
     }
 
     private static ServiceBusClientBuilder.ServiceBusSenderClientBuilder createBaseServiceBusSenderClient(

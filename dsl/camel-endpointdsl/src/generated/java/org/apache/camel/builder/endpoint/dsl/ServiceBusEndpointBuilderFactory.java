@@ -114,6 +114,38 @@ public interface ServiceBusEndpointBuilderFactory {
             return this;
         }
         /**
+         * Set the ServiceBusClientBuilder for the configuration.
+         * 
+         * The option is a:
+         * &lt;code&gt;com.azure.messaging.servicebus.ServiceBusClientBuilder&lt;/code&gt; type.
+         * 
+         * Group: common
+         * 
+         * @param clientBuilder the value to set
+         * @return the dsl builder
+         */
+        default ServiceBusEndpointConsumerBuilder clientBuilder(
+                com.azure.messaging.servicebus.ServiceBusClientBuilder clientBuilder) {
+            doSetProperty("clientBuilder", clientBuilder);
+            return this;
+        }
+        /**
+         * Set the ServiceBusClientBuilder for the configuration.
+         * 
+         * The option will be converted to a
+         * &lt;code&gt;com.azure.messaging.servicebus.ServiceBusClientBuilder&lt;/code&gt; type.
+         * 
+         * Group: common
+         * 
+         * @param clientBuilder the value to set
+         * @return the dsl builder
+         */
+        default ServiceBusEndpointConsumerBuilder clientBuilder(
+                String clientBuilder) {
+            doSetProperty("clientBuilder", clientBuilder);
+            return this;
+        }
+        /**
          * Sets the ClientOptions to be sent from the client built from this
          * builder, enabling customization of certain properties, as well as
          * support the addition of custom header information. Refer to the
@@ -765,6 +797,38 @@ public interface ServiceBusEndpointBuilderFactory {
             return this;
         }
         /**
+         * Set the ServiceBusClientBuilder for the configuration.
+         * 
+         * The option is a:
+         * &lt;code&gt;com.azure.messaging.servicebus.ServiceBusClientBuilder&lt;/code&gt; type.
+         * 
+         * Group: common
+         * 
+         * @param clientBuilder the value to set
+         * @return the dsl builder
+         */
+        default ServiceBusEndpointProducerBuilder clientBuilder(
+                com.azure.messaging.servicebus.ServiceBusClientBuilder clientBuilder) {
+            doSetProperty("clientBuilder", clientBuilder);
+            return this;
+        }
+        /**
+         * Set the ServiceBusClientBuilder for the configuration.
+         * 
+         * The option will be converted to a
+         * &lt;code&gt;com.azure.messaging.servicebus.ServiceBusClientBuilder&lt;/code&gt; type.
+         * 
+         * Group: common
+         * 
+         * @param clientBuilder the value to set
+         * @return the dsl builder
+         */
+        default ServiceBusEndpointProducerBuilder clientBuilder(
+                String clientBuilder) {
+            doSetProperty("clientBuilder", clientBuilder);
+            return this;
+        }
+        /**
          * Sets the ClientOptions to be sent from the client built from this
          * builder, enabling customization of certain properties, as well as
          * support the addition of custom header information. Refer to the
@@ -1168,6 +1232,37 @@ public interface ServiceBusEndpointBuilderFactory {
         default ServiceBusEndpointBuilder amqpTransportType(
                 String amqpTransportType) {
             doSetProperty("amqpTransportType", amqpTransportType);
+            return this;
+        }
+        /**
+         * Set the ServiceBusClientBuilder for the configuration.
+         * 
+         * The option is a:
+         * &lt;code&gt;com.azure.messaging.servicebus.ServiceBusClientBuilder&lt;/code&gt; type.
+         * 
+         * Group: common
+         * 
+         * @param clientBuilder the value to set
+         * @return the dsl builder
+         */
+        default ServiceBusEndpointBuilder clientBuilder(
+                com.azure.messaging.servicebus.ServiceBusClientBuilder clientBuilder) {
+            doSetProperty("clientBuilder", clientBuilder);
+            return this;
+        }
+        /**
+         * Set the ServiceBusClientBuilder for the configuration.
+         * 
+         * The option will be converted to a
+         * &lt;code&gt;com.azure.messaging.servicebus.ServiceBusClientBuilder&lt;/code&gt; type.
+         * 
+         * Group: common
+         * 
+         * @param clientBuilder the value to set
+         * @return the dsl builder
+         */
+        default ServiceBusEndpointBuilder clientBuilder(String clientBuilder) {
+            doSetProperty("clientBuilder", clientBuilder);
             return this;
         }
         /**

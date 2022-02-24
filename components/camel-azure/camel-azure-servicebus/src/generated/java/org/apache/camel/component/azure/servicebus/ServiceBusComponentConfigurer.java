@@ -36,6 +36,8 @@ public class ServiceBusComponentConfigurer extends PropertyConfigurerSupport imp
         case "autowiredEnabled": target.setAutowiredEnabled(property(camelContext, boolean.class, value)); return true;
         case "bridgeerrorhandler":
         case "bridgeErrorHandler": target.setBridgeErrorHandler(property(camelContext, boolean.class, value)); return true;
+        case "clientbuilder":
+        case "clientBuilder": getOrCreateConfiguration(target).setClientBuilder(property(camelContext, com.azure.messaging.servicebus.ServiceBusClientBuilder.class, value)); return true;
         case "clientoptions":
         case "clientOptions": getOrCreateConfiguration(target).setClientOptions(property(camelContext, com.azure.core.util.ClientOptions.class, value)); return true;
         case "configuration": target.setConfiguration(property(camelContext, org.apache.camel.component.azure.servicebus.ServiceBusConfiguration.class, value)); return true;
@@ -93,6 +95,8 @@ public class ServiceBusComponentConfigurer extends PropertyConfigurerSupport imp
         case "autowiredEnabled": return boolean.class;
         case "bridgeerrorhandler":
         case "bridgeErrorHandler": return boolean.class;
+        case "clientbuilder":
+        case "clientBuilder": return com.azure.messaging.servicebus.ServiceBusClientBuilder.class;
         case "clientoptions":
         case "clientOptions": return com.azure.core.util.ClientOptions.class;
         case "configuration": return org.apache.camel.component.azure.servicebus.ServiceBusConfiguration.class;
@@ -146,6 +150,8 @@ public class ServiceBusComponentConfigurer extends PropertyConfigurerSupport imp
         case "autowiredEnabled": return target.isAutowiredEnabled();
         case "bridgeerrorhandler":
         case "bridgeErrorHandler": return target.isBridgeErrorHandler();
+        case "clientbuilder":
+        case "clientBuilder": return getOrCreateConfiguration(target).getClientBuilder();
         case "clientoptions":
         case "clientOptions": return getOrCreateConfiguration(target).getClientOptions();
         case "configuration": return target.getConfiguration();

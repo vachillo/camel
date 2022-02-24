@@ -78,8 +78,8 @@ public class ServiceBusComponent extends DefaultComponent {
 
     private void validateConfigurations(final ServiceBusConfiguration configuration) {
         if (configuration.getReceiverAsyncClient() == null || configuration.getSenderAsyncClient() == null) {
-            if (ObjectHelper.isEmpty(configuration.getConnectionString())) {
-                throw new IllegalArgumentException("Azure ServiceBus ConnectionString must be specified.");
+            if (ObjectHelper.isEmpty(configuration.getConnectionString()) && configuration.getClientBuilder() == null) {
+                throw new IllegalArgumentException("Azure ServiceBus ConnectionString or ServiceBusClientBuilder must be specified.");
             }
         }
     }

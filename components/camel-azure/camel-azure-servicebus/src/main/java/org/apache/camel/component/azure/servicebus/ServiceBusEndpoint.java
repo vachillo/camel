@@ -48,10 +48,10 @@ public class ServiceBusEndpoint extends DefaultEndpoint {
 
     @Override
     public Consumer createConsumer(Processor processor) throws Exception {
-        final Consumer eventHubConsumer = new ServiceBusConsumer(this, processor);
-        configureConsumer(eventHubConsumer);
+        final Consumer serviceBusConsumer = new ServiceBusConsumer(this, processor);
+        configureConsumer(serviceBusConsumer);
 
-        return eventHubConsumer;
+        return serviceBusConsumer;
     }
 
     /**

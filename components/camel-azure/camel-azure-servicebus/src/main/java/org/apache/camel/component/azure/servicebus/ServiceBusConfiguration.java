@@ -23,6 +23,7 @@ import com.azure.core.amqp.AmqpRetryOptions;
 import com.azure.core.amqp.AmqpTransportType;
 import com.azure.core.amqp.ProxyOptions;
 import com.azure.core.util.ClientOptions;
+import com.azure.messaging.servicebus.ServiceBusClientBuilder;
 import com.azure.messaging.servicebus.ServiceBusReceivedMessage;
 import com.azure.messaging.servicebus.ServiceBusReceiverAsyncClient;
 import com.azure.messaging.servicebus.ServiceBusSenderAsyncClient;
@@ -82,6 +83,8 @@ public class ServiceBusConfiguration implements Cloneable {
     private ServiceBusTransactionContext serviceBusTransactionContext;
     @UriParam(label = "producer")
     private OffsetDateTime scheduledEnqueueTime;
+    @UriParam(label = "common")
+    private ServiceBusClientBuilder clientBuilder;
 
     /**
      * Selected topic name or the queue name, that is depending on serviceBusType config. For example if
@@ -317,6 +320,17 @@ public class ServiceBusConfiguration implements Cloneable {
 
     public void setPeekNumMaxMessages(Integer peekNumMaxMessages) {
         this.peekNumMaxMessages = peekNumMaxMessages;
+    }
+
+    /**
+     * Set the {@link ServiceBusClientBuilder} for the configuration
+     */
+    public ServiceBusClientBuilder getClientBuilder() {
+        return clientBuilder;
+    }
+
+    public void setClientBuilder(ServiceBusClientBuilder clientBuilder) {
+        this.clientBuilder = clientBuilder;
     }
 
     // *************************************************
